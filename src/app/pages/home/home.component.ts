@@ -15,6 +15,6 @@ import { SmallCardComponent } from '../../components/small-card/small-card.compo
     SmallCardComponent,
   ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent {}
