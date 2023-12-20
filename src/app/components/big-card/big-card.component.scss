@@ -1,0 +1,30 @@
+.container_big-card {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+
+  width: 400px;
+  height: 600px;
+
+  margin: 0 20px;
+
+  .big-card_photo {
+    img {
+      width: 100%;
+    }
+  }
+
+  .big-card_title {
+    margin-top: 15px;
+
+    h1 {
+      font-size: 20px;
+    }
+  }
+
+  .big-card_description {
+    p {
+      color: grey;
+    }
+  }
+}
