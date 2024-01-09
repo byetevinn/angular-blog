@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+
+import { newsData } from '../../data/newsData';
 
 @Component({
   selector: 'app-content',
@@ -9,17 +11,28 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
   styleUrl: './content.component.scss',
 })
 export class ContentComponent implements OnInit {
-  photoCover: string =
-    'https://disneyplusbrasil.com.br/wp-content/uploads/2022/08/Tony-Stark-Homem-de-Ferro-1.jpg';
-  contentTitle: string = 'MINHA NOTICIA';
-  contentDescription: string = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae,
-  distinctio tempore et, culpa voluptate sint corporis quam inventore saepe
-  laudantium magnam voluptas, facere nam amet. Tempora libero rem saepe.
-  Alias!`;
+  photoCover: string = '';
+  contentTitle: string = '';
+  contentDescription: string = '';
+  private id: string | null = '0';
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((value) => console.log(value.get('id')));
+    this.route.paramMap.subscribe((value) => (this.id = value.get('id')));
+
+    this.setValuesToComponent(this.id);
+  }
+
+  setValuesToComponent(id: string | null) {
+    const result = newsData.filter(
+      (article) => article.id.toString() === id
+    )[0];
+
+    if (result) {
+      this.photoCover = result.photoCover;
+      this.contentTitle = result.title;
+      this.contentDescription = result.description;
+    }
   }
 }
